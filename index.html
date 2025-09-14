@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hádej číslo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>Hádej číslo!</h1>
+    <p>Myslím si číslo mezi <b>1 a 100</b>. Dokážeš ho uhodnout?</p>
+
+    <input type="number" id="guess" placeholder="Tvůj tip" />
+    <br>
+    <button onclick="checkGuess()">Hádej</button>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    const secretNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const guess = Number(document.getElementById("guess").value);
+      const message = document.getElementById("message");
+
+      // kontrola prázdného vstupu
+      if (!guess) {
+        message.textContent = "Zadej prosím číslo!";
+        message.className = "error";
+        return;
+      }
+
+      // kontrola intervalu 1–100
+      if (guess < 1 || guess > 100) {
+        message.textContent = "Číslo musí být v intervalu 1 až 100!";
+        message.className = "error";
+        document.getElementById("guess").value = "";
+        return;
+      }
+
+      attempts++;
+
+      if (guess === secretNumber) {
+        message.textContent = `🎉 Gratuluju! Uhodl jsi číslo ${secretNumber} za ${attempts} pokusů!`;
+        message.className = "success";
+      } else if (guess < secretNumber) {
+        message.textContent = "Hledané číslo je větší";
+        message.className = "hint";
+      } else {
+        message.textContent = "Hledané číslo je menší";
+        message.className = "hint";
+      }
+
+      // vymaže input pro další tip
+      document.getElementById("guess").value = "";
+    }
+  </script>
+</body>
+</html>
