@@ -1,0 +1,1 @@
+# hadej_cislo
