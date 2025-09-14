@@ -47,10 +47,10 @@
         message.textContent = `🎉 Gratuluju! Uhodl jsi číslo ${secretNumber} za ${attempts} pokusů!`;
         message.className = "success";
       } else if (guess < secretNumber) {
-        message.textContent = "Hledané číslo je větší";
+        message.textContent = "⬆️ Hledané číslo je větší ⬆️";
         message.className = "hint";
       } else {
-        message.textContent = "Hledané číslo je menší";
+        message.textContent = "⬇️ Hledané číslo je menší ⬇️";
         message.className = "hint";
       }
 
@@ -60,3 +60,4 @@
   </script>
 </body>
 </html>
+
